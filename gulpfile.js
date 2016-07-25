@@ -6,7 +6,7 @@ const uglify = require('gulp-uglify');
 const plumber = require('gulp-plumber');
 
 const debug = true;
-const compFileName = 'app.jsx';
+const compFileName = 'index.jsx';
 const ENV = 'development';
 
 process.env.NODE_ENV = ENV;
@@ -31,13 +31,13 @@ gulp.task('compile', () => {
 		.on('error', handleError)
 		.pipe(source('bundle.js'))
 		.pipe(buffer())
-		.pipe(uglify())
+		//.pipe(uglify())
 		.pipe(gulp.dest('./dist'))
 		.pipe(plumber());
 });
 
 gulp.task('watch', () => {
-	gulp.watch(['./src/**/**.js', './src/**/**.jsx'], ['compile']);
+	gulp.watch(['./src/**/*.js', './src/**/*.jsx'], ['compile']);
 });
 
 gulp.task('default', ['watch']);
